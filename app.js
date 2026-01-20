@@ -17,7 +17,6 @@ app.get('/image/:folder', async (req, res) => {
     if (error) {
         return res.status(404).send(error);
     }
-
     const fileWithUrls = files.map(file => {
         const {data} = supabase.storage.from('image').getPublicUrl(`${req.params.folder}/${file.name}`);
         return {
@@ -27,7 +26,6 @@ app.get('/image/:folder', async (req, res) => {
         }
     })
     res.send(fileWithUrls);
-
 });
 
 app.get('/', async (req, res) => {
@@ -45,10 +43,6 @@ app.get('/', async (req, res) => {
   }
 
   res.json(data);
-});
-
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
 });
 
 app.listen(PORT, () => {
